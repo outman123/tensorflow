@@ -62,7 +62,7 @@ import numpy as np
 # mul = tf.multiply(input1, add)
 # with tf.Session() as sess:
 #     print(sess.run([mul, add]))
-#feed
+# feed
 # # 创建占位符
 # input1 = tf.placeholder(tf.float32)
 # input2 = tf.placeholder(tf.float32)
