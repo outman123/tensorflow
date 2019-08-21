@@ -14,7 +14,7 @@ import numpy as np
 # product = tf.matmul(m1, m2)
 # print(product)
 # #启动图(会话中run触发op)
-# sess=tf.compat.v1.Session()
+# sess=tf.Session()
 # res=sess.run(product)
 # print(res)
 # sess.close()
