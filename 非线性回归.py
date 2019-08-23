@@ -21,7 +21,7 @@ y = tf.placeholder(tf.float32, [None, 1])
 Weights_L1 = tf.Variable(tf.random_normal([1, 10]))
 biases_L1 = tf.Variable(tf.zeros([1, 10]))
 Wx_plus_b_L1 = tf.matmul(x, Weights_L1) + biases_L1
-L1 = tf.nn.tanh(Wx_plus_b_L1)
+L1 = tf.nn.tanh(Wx_plus_b_L1)  # 激活函数
 
 # 定义神经网络输出层
 Weights_L2 = tf.Variable(tf.random_normal([10, 1]))
