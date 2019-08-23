@@ -18,9 +18,9 @@ x = tf.placeholder(tf.float32, [None, 1])
 y = tf.placeholder(tf.float32, [None, 1])
 
 # 定义神经网络中间层
-Weights_L1 = tf.Variable(tf.random_normal([1, 10]))
-biases_L1 = tf.Variable(tf.zeros([1, 10]))
-Wx_plus_b_L1 = tf.matmul(x, Weights_L1) + biases_L1
+Weights_L1 = tf.Variable(tf.random_normal([1, 10]))  # 中间层10个神经原
+biases_L1 = tf.Variable(tf.zeros([1, 10]))  # 偏值
+Wx_plus_b_L1 = tf.matmul(x, Weights_L1) + biases_L1  # 线性变换
 L1 = tf.nn.tanh(Wx_plus_b_L1)  # 激活函数
 
 # 定义神经网络输出层
@@ -30,9 +30,9 @@ Wx_plus_b_L2 = tf.matmul(L1, Weights_L2) + biases_L2
 predict = tf.nn.tanh(Wx_plus_b_L2)
 
 # 二次代价函数
-loss = tf.reduce_mean(tf.square(y - predict))
+loss = tf.reduce_mean(tf.square(y - predict))  # 样例值和预测值的差的平方作为代价
 # 梯度下降算法训练器
-train = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
+train = tf.train.GradientDescentOptimizer(0.1).minimize(loss)  # 训练过程在减少代价损失
 
 with tf.Session() as sess:
     # 变量初始化
