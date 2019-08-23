@@ -30,7 +30,7 @@ Wx_plus_b_L2 = tf.matmul(L1, Weights_L2) + biases_L2
 predict = tf.nn.tanh(Wx_plus_b_L2)
 
 # 二次代价函数
-loss = tf.reduce_mean(tf.square(y - predict))  # 样例值和预测值的差的平方作为代价
+loss = tf.reduce_mean(tf.square(y - predict))  # 标签值和预测值的差的平方作为代价
 # 梯度下降算法训练器
 train = tf.train.GradientDescentOptimizer(0.1).minimize(loss)  # 训练过程在减少代价损失
 
