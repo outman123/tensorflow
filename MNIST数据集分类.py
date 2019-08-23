@@ -11,7 +11,8 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("MNIST_data", one_hot=True)
 
 batch_size = 100  # 可优化
-n_batch = mnist.train.num_examples
+n_batch = int(mnist.train.num_examples/batch_size)
+print(n_batch)
 # 定义两个placeholder（训练数据集和标签）
 x = tf.placeholder(tf.float32, [None, 784])
 y = tf.placeholder(tf.float32, [None, 10])
