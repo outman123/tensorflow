@@ -29,7 +29,7 @@ with tf.name_scope("layout"):
     with tf.name_scope("predict"):
         predict = tf.nn.softmax(wx_plus_b)  # softmax将输出信号转化为概率值（10个概率值）
 
-# 二次代价函数（可使用交叉熵代价函数或对数似然代价函数来优化）
+# 可使用交叉熵代价函数来优化
 with tf.name_scope("loss"):
     loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(labels=y,logits=predict))
 # 使用梯度下降法训练，使得loss最小（#可优化）
