@@ -13,7 +13,7 @@ batch_size = 100  # 可优化
 n_batch = int(mnist.train.num_examples / batch_size)
 
 
-def variable_summaries(var):
+def variable_summaries(var):  # 在tensorboard中显示var的相关属性值
     with tf.name_scope("summaries"):
         mean = tf.reduce_mean(var)  # 平均值
         tf.summary.scalar("mean", mean)
