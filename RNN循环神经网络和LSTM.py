@@ -37,6 +37,11 @@ def RNN(x,weight,bias):
     lstm_cell=tf.nn.rnn_cell.BasicLSTMCell(lstm_size)#定义LSTM的cell
     outputs,final_state=tf.nn.dynamic_rnn(lstm_cell,inputs,dtype=tf.float32)#循环运行该神经网络，使用LSTM提高长期记忆；outputs表示返回每一次timestep返回值，final_state表示最后一个timestep返回的值
     #final_state[0]表示记忆单元c,final_state[1]表示隐藏层输出h
+      #outputs:
+      # If time_major == False (default), this will be a `Tensor` shaped:
+      #   `[batch_size, max_time, cell.output_size]`.
+      # If time_major == True, this will be a `Tensor` shaped:
+      #   `[max_time, batch_size, cell.output_size]`.
     result=tf.nn.softmax(tf.matmul(final_state[1],weight)+bias)
     return  result
 
