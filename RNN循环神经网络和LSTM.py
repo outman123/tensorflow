@@ -7,6 +7,13 @@
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
+# LSTM实现了三个门计算，即遗忘门、输入门和输出门
+# 遗忘门负责决定保留多少上一时刻的单元状态到当前时刻的单元状态；
+# 输入门负责决定保留多少当前时刻的输入到当前时刻的单元状态；
+# 输出门负责决定当前时刻的单元状态有多少输出。
+# 算法核心在于记忆单元(过去记忆*遗忘门+现在输入*输入门)。会产生两种输出，一个是记忆单元c，一个是隐藏层的输出h
+
+
 #载入数据集
 mnist=input_data.read_data_sets('MNIST_data',one_hot=True)
 
