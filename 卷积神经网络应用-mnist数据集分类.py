@@ -14,7 +14,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("MNIST_data", one_hot=True)
 
 batch_size = 100  # 一个批次的大小，可优化
-n_batch = int(mnist.train.num_examples / batch_size)  # 一共有多少个批次
+n_batch = mnist.train.num_examples // batch_size # 一共有多少个批次
 
 
 # 权值初始化
