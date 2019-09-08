@@ -5,7 +5,7 @@
 @time: 2019/09/05
 '''
 
-# 卷积层就是对图像像素进行特征提取，多个不同卷积核增加深度
+# 卷积层就是对图像像素进行特征提取，多个不同卷积核产生不同特征图，增加深度，减少参数
 # 池化层就是降低分辨率，缩小尺寸，减少参数，加快计算
 
 import tensorflow as tf
@@ -61,6 +61,9 @@ b_con2 = bias_variable([64])  # 每一次卷积对应一个偏置，所以32
 h_con2 = tf.nn.relu(conv2d(h_pool1, w_con2) + b_con2)
 h_pool2 = max_pool_2x2(h_con2)
 
+#28*28*1的图片第一次卷积后tensor的shape是28*28*32，第一次池化后是14*14*32
+#第二次卷积后输出shape是14*14*64，第二次池化后是7*7*64
+
 #第一个全连接层的权值和偏置
 w_fc1=weight_variable([7*7*64,1024])
 b_fc1=bias_variable([1024])
@@ -68,7 +71,8 @@ b_fc1=bias_variable([1024])
 h_pool2_flat=tf.reshape(h_pool2,[-1,7*7*64])
 #第一个全连接层的输出
 h_fc1=tf.nn.relu(tf.matmul(h_pool2_flat,w_fc1)+b_fc1)
-#神经元输出概率
+
+#神经元输出概率，防止过拟合
 keep_prob=tf.placeholder(tf.float32)
 h_fc1_drop=tf.nn.dropout(h_fc1,keep_prob)
 
@@ -77,10 +81,10 @@ w_fc2=weight_variable([1024,10])
 b_fc2=bias_variable([10])
 predict = tf.nn.softmax(tf.matmul(h_fc1_drop, w_fc2) + b_fc2)  # softmax将输出信号转化为概率值（10个概率值）
 
-# 二次代价函数（可使用交叉熵代价函数或对数似然代价函数来优化）
+# 交叉熵代价函数
 loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(labels=y,logits=predict))
-# 使用梯度下降法训练，使得loss最小（#可优化）
-train_step = tf.train.GradientDescentOptimizer(1e-4).minimize(loss)
+# 使用AdamOptimizer优化，使得loss最小
+train_step = tf.train.AdamOptimizer(1e-4).minimize(loss)
 # 初始化变量
 init = tf.global_variables_initializer()
 
