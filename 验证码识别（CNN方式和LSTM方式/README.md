@@ -1,0 +1,1 @@
+分别使用CNN和LSTM+CTC方式识别freetype生成的字符图片的字符
